@@ -19,6 +19,8 @@ public class JFrameServer extends javax.swing.JFrame {
     int timeRun = 2;
     int test = 0;
     String directory = "";
+    
+    boolean jRBON_selected=false;
         
     File filename;
     String bytefile="";
@@ -336,44 +338,15 @@ public class JFrameServer extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_ProcessMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-
+        jRB_OFF.setSelected(true);
     }//GEN-LAST:event_formWindowActivated
 
     private void jRB_ONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_ONActionPerformed
-        if(jRB_ON.isSelected()){//cek client kalau gak paham
-            System.out.println("ON");
-            jRB_OFF.setEnabled(true);
-            jRB_ON.setEnabled(false);
-            if(timeRun==2){
-                timeRun = 0;
-                TX();
-                RX();
-            }
-            else{
-                resume();
-            }
-            jTF_Dir.setEditable(false);
-        }
-        else{
-            System.out.println("rusak");
-        }
+        OnChanged();
     }//GEN-LAST:event_jRB_ONActionPerformed
 
     private void jRB_OFFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_OFFActionPerformed
-        if(jRB_ON.isSelected()){//cek client kalau gak paham
-            System.out.println("ON");
-            jRB_OFF.setEnabled(true);
-            jRB_ON.setEnabled(false);
-            resume();
-        }
-        else if (jRB_OFF.isSelected()){
-            System.out.println("OFF");
-            jRB_ON.setEnabled(true);
-            jRB_OFF.setEnabled(false);
-            pause();
-            jTF_Dir.setEditable(true);
-        }
-
+        OnChanged();
     }//GEN-LAST:event_jRB_OFFActionPerformed
 
     private void jB_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ExitActionPerformed
@@ -823,6 +796,31 @@ public class JFrameServer extends javax.swing.JFrame {
             balikan = false;
         }   
         return balikan;
+    }
+
+    private void OnChanged() {
+         if(jRB_ON.isSelected()){
+            if(jRBON_selected==false){
+                System.out.println("ON");
+                if(timeRun==2){
+                    timeRun = 0;
+                    TX();
+                    RX();
+                }
+                else{
+                    resume();
+                }
+                jTF_Dir.setEditable(false);
+                jRBON_selected=true;
+            }
+        }else{
+            if(jRBON_selected==true){
+            System.out.println("OFF");
+            pause();
+            jTF_Dir.setEditable(true);
+            jRBON_selected=false;
+            }
+        }
     }
   }
 

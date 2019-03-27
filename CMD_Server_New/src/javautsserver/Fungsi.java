@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JFileChooser;
 
-public class Fungsi {//ngertikan.... ndek modul sing mbien
+public class Fungsi {
     public String jam(){
             Calendar cal = new GregorianCalendar();
             int hour = cal.get(Calendar.HOUR);

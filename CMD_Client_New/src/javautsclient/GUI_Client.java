@@ -350,6 +350,7 @@ public class GUI_Client extends javax.swing.JFrame {
                     jTF_Pesan.setText("ThisIP|"+InetAddress.getLocalHost().getHostAddress()+"|"+operatingSystem2+"|Add");
                     jB_Send.doClick();
                     jTF_Pesan.setText("");
+                    jTA_Chat.append("Mencoba Terhubung ke Server");
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(GUI_Client.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -379,7 +380,7 @@ public class GUI_Client extends javax.swing.JFrame {
         jB_LogIn.setVisible(true);
         model.removeAllElements();
         pause();
-          
+
     }//GEN-LAST:event_jB_LogOutActionPerformed
 
     private void jB_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_SendActionPerformed
@@ -416,6 +417,14 @@ public class GUI_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_SendActionPerformed
 
     private void jB_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ExitActionPerformed
+        try {//sama kayak button login cuma dibalik
+            System.out.println(InetAddress.getLocalHost().getHostAddress());
+            jTF_Pesan.setText("ThisIP|"+InetAddress.getLocalHost().getHostAddress()+"|"+operatingSystem2+"|Remove");
+            jB_Send.doClick();
+            jTF_Pesan.setText("");
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(GUI_Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.exit(0);
     }//GEN-LAST:event_jB_ExitActionPerformed
 
@@ -545,11 +554,12 @@ public class GUI_Client extends javax.swing.JFrame {
                         String s = new String(incoming.getData( ));//memasukkan paket yang di terima ke String s
                         String[] real=s.split("\\|");//memcah isi string s ke array real
 
+                        //TODO ganti switch case jadi Action("Shutdown") supaya lebih bestpractice heheheh
                         switch(real[0]){//pemilihan aksi
-                            case "Shutdown" : shutdown(); break; 
-                            case "Restart"  : restart(); break;
-                            case "Sleep"    : sleeps(); break;
-                            case "Lock"     : lock(); break;
+                            case "Shutdown" : shutdown();action("Shutdown"); break; 
+                            case "Restart"  : restart();action("Restart"); break;
+                            case "Sleep"    : sleeps();action("Sleep"); break;
+                            case "Lock"     : lock();action("Lock"); break;
                             case "Client"   : SetListClient(real[1]); break;
                             case "File"     : format=real[1];IPServer=real[2];namaFilenya=real[3];RX_File(); break;//pengisian variable dan pemangilan method
                             case "Image"    : format=real[1];ImageRX(); break;
@@ -572,6 +582,10 @@ public class GUI_Client extends javax.swing.JFrame {
                         }
                     }
                 }
+            }
+
+            private void action(String test) {
+                System.out.println(test);
             }
             
         }.start();

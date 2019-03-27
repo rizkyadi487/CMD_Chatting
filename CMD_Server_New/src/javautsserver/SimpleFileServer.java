@@ -11,7 +11,7 @@ import java.net.Socket;
 public class SimpleFileServer {//sama kayak SimpleFileClient di Client
 
   public final static int SOCKET_PORT = 13267;  // you may change this
-  public static String FILE_TO_SEND = "D:/abc.jpg";  // you may change this
+  public static String FILE_TO_SEND = "D:/abc.jpg";  // ganti file yang pingin dikirim
 
   public static void test(String namafile,int loop) throws IOException {
     FILE_TO_SEND = namafile;
