@@ -27,7 +27,7 @@ public class GUI_Client extends javax.swing.JFrame {
     private volatile boolean paused = false;//pengendali thread pause
     private final Object pauseLock = new Object();//pengendali thread pauseLock
 
-    String operatingSystem2 = System.getProperty("os.name");//cari tahu OS
+    String operatingSystem = System.getProperty("os.name");//cari tahu OS
     
     DefaultListModel model = new DefaultListModel();
     
@@ -35,7 +35,6 @@ public class GUI_Client extends javax.swing.JFrame {
         try {
             //deklarasi
             String shutdownCommand = null;
-            String operatingSystem = System.getProperty("os.name");//cari type OS
             
             if (null != operatingSystem) switch (operatingSystem) {//milih OS
                 case "Linux":
@@ -62,7 +61,6 @@ public class GUI_Client extends javax.swing.JFrame {
         try {
             //deklarasi
             String lockCommand = null;
-            String operatingSystem = System.getProperty("os.name");//cari type OS
 
             if (null != operatingSystem) switch (operatingSystem) {
                 case "Linux":
@@ -88,7 +86,6 @@ public class GUI_Client extends javax.swing.JFrame {
         try {
             //deklarasi
             String shutdownCommand = null;
-            String operatingSystem = System.getProperty("os.name");//cari type OS
             
             if ("Linux".equals(operatingSystem) || "Mac OS X".equals(operatingSystem) || "Windows 7".equals(operatingSystem) || "Windows 10".equals(operatingSystem) || "Windows 8".equals(operatingSystem) || "Windows 8.1".equals(operatingSystem)){jTA_Chat.append("Maaf, Komputer di restart paksa SERVER\n");TimeUnit.SECONDS.sleep(2);}else{jTF_Pesan.setText("unsuport");jB_Send.doClick();jTF_Pesan.setText("");}
             
@@ -115,7 +112,6 @@ public class GUI_Client extends javax.swing.JFrame {
         try {
             //deklarasi
             String shutdownCommand = null;
-            String operatingSystem = System.getProperty("os.name");//cari type OS
             
             //if ("Linux".equals(operatingSystem) || "Mac OS X".equals(operatingSystem) || "Windows 7".equals(operatingSystem) || "Windows 10".equals(operatingSystem) || "Windows 8".equals(operatingSystem) || "Windows 8.1".equals(operatingSystem)){jTA_Chat.append("Maaf, Komputer di sleep paksa SERVER\n");TimeUnit.SECONDS.sleep(2);}else{jTF_Pesan.setText("unsuport");jB_Send.doClick();jTF_Pesan.setText("");}
             
@@ -347,7 +343,7 @@ public class GUI_Client extends javax.swing.JFrame {
             jB_LogOut.setVisible(true);
             try {//ngirim informasi kalau dia login ke server
                     System.out.println(InetAddress.getLocalHost().getHostAddress());
-                    jTF_Pesan.setText("ThisIP|"+InetAddress.getLocalHost().getHostAddress()+"|"+operatingSystem2+"|Add");
+                    jTF_Pesan.setText("ThisIP|"+InetAddress.getLocalHost().getHostAddress()+"|"+operatingSystem+"|Add");
                     jB_Send.doClick();
                     jTF_Pesan.setText("");
                     jTA_Chat.append("Mencoba Terhubung ke Server");
@@ -367,7 +363,7 @@ public class GUI_Client extends javax.swing.JFrame {
     private void jB_LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_LogOutActionPerformed
         try {//sama kayak button login cuma dibalik
             System.out.println(InetAddress.getLocalHost().getHostAddress());
-            jTF_Pesan.setText("ThisIP|"+InetAddress.getLocalHost().getHostAddress()+"|"+operatingSystem2+"|Remove");
+            jTF_Pesan.setText("ThisIP|"+InetAddress.getLocalHost().getHostAddress()+"|"+operatingSystem+"|Remove");
             jB_Send.doClick();
             jTF_Pesan.setText("");
         } catch (UnknownHostException ex) {
@@ -384,6 +380,8 @@ public class GUI_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_LogOutActionPerformed
 
     private void jB_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_SendActionPerformed
+        //TODO membuat yang di bawah ini menjadi fungsi sendiri ke sendMessage();
+        sendMessage();
         if(jB_LogIn.isVisible()==true){//ya wes ngono iku lah
             JOptionPane.showMessageDialog(null, "You must Login !", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -419,7 +417,7 @@ public class GUI_Client extends javax.swing.JFrame {
     private void jB_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ExitActionPerformed
         try {//sama kayak button login cuma dibalik
             System.out.println(InetAddress.getLocalHost().getHostAddress());
-            jTF_Pesan.setText("ThisIP|"+InetAddress.getLocalHost().getHostAddress()+"|"+operatingSystem2+"|Remove");
+            jTF_Pesan.setText("ThisIP|"+InetAddress.getLocalHost().getHostAddress()+"|"+operatingSystem+"|Remove");
             jB_Send.doClick();
             jTF_Pesan.setText("");
         } catch (UnknownHostException ex) {
@@ -686,5 +684,9 @@ public class GUI_Client extends javax.swing.JFrame {
             paused = false;
             pauseLock.notifyAll(); // Unblocks thread
         }
+    }
+
+    private void sendMessage() {
+        System.out.println("Mengirim Pesan, masih butuh di perbaiki");
     }
 }
