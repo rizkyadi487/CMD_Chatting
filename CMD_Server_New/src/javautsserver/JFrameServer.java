@@ -41,7 +41,9 @@ public class JFrameServer extends javax.swing.JFrame {
     
     public JFrameServer() {
         initComponents();
+        jTF_Dir.setText(System.getProperty("user.dir")+"\\test.baru");
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,9 +80,6 @@ public class JFrameServer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -337,10 +336,6 @@ public class JFrameServer extends javax.swing.JFrame {
         TX_ImageAndFile(Pesan);
     }//GEN-LAST:event_jB_ProcessMouseClicked
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        jRB_OFF.setSelected(true);
-    }//GEN-LAST:event_formWindowActivated
-
     private void jRB_ONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRB_ONActionPerformed
         OnChanged();
     }//GEN-LAST:event_jRB_ONActionPerformed
@@ -354,6 +349,7 @@ public class JFrameServer extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_ExitActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        jRB_OFF.setSelected(true);
         jTA_ChatHistory.setEditable(false);//cek client kalau gak paham
         directory = jTF_Dir.getText();
         model = (DefaultTableModel) jTable_IPClient.getModel();

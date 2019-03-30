@@ -376,14 +376,13 @@ public class GUI_Client extends javax.swing.JFrame {
         jB_LogIn.setVisible(true);
         model.removeAllElements();
         pause();
-
     }//GEN-LAST:event_jB_LogOutActionPerformed
 
     private void jB_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_SendActionPerformed
         //TODO membuat yang di bawah ini menjadi fungsi sendiri ke sendMessage();
         sendMessage();
         if(jB_LogIn.isVisible()==true){//ya wes ngono iku lah
-            JOptionPane.showMessageDialog(null, "You must Login !", "Info", JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "You must Login !", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
         else{            
             //deklarasi

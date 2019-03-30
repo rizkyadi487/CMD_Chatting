@@ -119,7 +119,7 @@ public class Fungsi {
             //jTextArea1.setText(aaa.cetak());
             cetakan = (aaa.cetak());
         }
-        catch(IOException e){chat("System", "Error, but now is normaly working", "File Deleted\n", "D:\\test.baru");}
+        catch(IOException e){chat("System", "Error, but now is normaly working", "File Deleted\n", System.getProperty("user.dir")+"\\test.baru");}
         return cetakan;
 //          return "";
     }
